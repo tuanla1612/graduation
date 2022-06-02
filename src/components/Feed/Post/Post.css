@@ -5,6 +5,7 @@
     border-radius: 15px;
     background-color: white;
     box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
+    border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 /* post Top */
@@ -26,6 +27,10 @@
     color: gray;
 }
 
+.postTopDonateInfo{
+    padding-left: 100px;
+}
+
 /* post Bottom */
 .postBottom {
     margin-top: 10px;
@@ -36,6 +41,19 @@
 /* post Image */
 .postImage img {
     width: 100%;
+}
+.postLike {
+    padding-top: 10px;
+    border-top: 1px solid lightgray;
+    display: flex;
+    font-size: medium;
+    color: gray;
+    cursor: pointer;
+    padding: 15px;
+}
+
+.postLike .postOptionButton{
+    padding-left: 10px;
 }
 
 /* post Options */
@@ -63,3 +81,7 @@
     background-color: #eff2f5;
     border-radius: 10px;
 }
+.postOption .postOptionButton{
+    padding-left: 10px;
+}
+

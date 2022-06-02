@@ -17,6 +17,7 @@ contract Decentragram {
     string postType;
     uint like;
     bool viewStatus;
+    uint256 createAt; 
   }
 
   event ImageCreated(
@@ -27,7 +28,8 @@ contract Decentragram {
     address payable author,
     string postType,
     uint like,
-    bool viewStatus
+    bool viewStatus,
+    uint256 createAt
   );
 
   event ImageTipped(
@@ -38,7 +40,8 @@ contract Decentragram {
     address payable author,
     string postType,
     uint like,
-    bool viewStatus
+    bool viewStatus,
+    uint256 createAt
   );
 
   event ImageLiked(
@@ -49,7 +52,8 @@ contract Decentragram {
     address payable author,
     string postType,
     uint like,
-    bool viewStatus
+    bool viewStatus,
+    uint256 createAt
   );
 
   event ImageUnliked(
@@ -60,7 +64,8 @@ contract Decentragram {
     address payable author,
     string postType,
     uint like,
-    bool viewStatus
+    bool viewStatus,
+    uint256 createAt
   );
 
   constructor() public {
@@ -81,9 +86,9 @@ contract Decentragram {
     imageCount ++;
 
     // Add Image to the contract
-    images[imageCount] = Image(imageCount, _imgHash, _description, 0, msg.sender, _type, 0, true);
+    images[imageCount] = Image(imageCount, _imgHash, _description, 0, msg.sender, _type, 0, true, now);
     // Trigger an event
-    emit ImageCreated(imageCount, _imgHash, _description, 0, msg.sender, _type, 0, true);
+    emit ImageCreated(imageCount, _imgHash, _description, 0, msg.sender, _type, 0, true, now);
   }
 
   function tipImageOwner(uint _id) public payable {
@@ -100,7 +105,7 @@ contract Decentragram {
     // Update the image
     images[_id] = _image;
     // Trigger an event
-    emit ImageTipped(_id, _image.hash, _image.description, _image.tipAmount, _author, _image.postType, _image.like, _image.viewStatus);
+    emit ImageTipped(_id, _image.hash, _image.description, _image.tipAmount, _author, _image.postType, _image.like, _image.viewStatus, _image.createAt);
   }
 
   function likeImage(uint _id) public {
@@ -131,7 +136,7 @@ contract Decentragram {
     // Update the image
     images[_id] = _image;
     // Trigger an event
-    emit ImageUnliked(_id, _image.hash, _image.description, _image.tipAmount, msg.sender, _image.postType, _image.like, _image.viewStatus);
+    // emit ImageUnliked(_id, _image.hash, _image.description, _image.tipAmount, msg.sender, _image.postType, _image.like, _image.viewStatus);
   }
 
   function privateImage(uint _id) public {
